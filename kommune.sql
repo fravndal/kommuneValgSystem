@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 13. Mar, 2019 15:52 PM
+-- Generation Time: 13. Mar, 2019 16:57 PM
 -- Tjener-versjon: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -33,6 +33,35 @@ CREATE TABLE `aktiver_bruker_passord_pollett` (
   `velg_hash` char(16) NOT NULL,
   `pollett` char(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur for tabell `ansatt`
+--
+
+CREATE TABLE `ansatt` (
+  `id` int(10) NOT NULL,
+  `kretsNr` int(10) NOT NULL,
+  `navn` char(100) COLLATE utf8_unicode_ci NOT NULL,
+  `telefon` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` char(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fodselsaar` int(4) NOT NULL,
+  `leder` tinyint(1) DEFAULT NULL,
+  `nestLeder` tinyint(1) DEFAULT NULL,
+  `sekreter` tinyint(1) DEFAULT NULL,
+  `vaktmester` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dataark for tabell `ansatt`
+--
+
+INSERT INTO `ansatt` (`id`, `kretsNr`, `navn`, `telefon`, `email`, `fodselsaar`, `leder`, `nestLeder`, `sekreter`, `vaktmester`) VALUES
+(1, 1, 'Fredrik Hulaas', '98821561', 'hønefoss@gamil.com', 1993, 1, 0, 0, 0),
+(2, 2, 'Fredrik Ravndal', '98821562', 'hønefoss1@hot.com', 1994, 0, 1, 0, 1),
+(3, 2, 'Ole Kristian Gran', '98821563', 'hønefoss2@live.com', 1995, 0, 1, 0, 0),
+(4, 3, 'Håvard Betten', '98821564', 'hønefos3s@msn.com', 1996, 0, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -170,6 +199,29 @@ INSERT INTO `soknad` (`id`, `navn`, `fodselnr`, `adresse`, `city`, `postkode`, `
 (2, 'Ola Putten', '01126445645', 'glova 1', 'Oslo', '4312', '84458745', 'olapb96@gmail.com', 'Bil og førerkort', '2', '1'),
 (3, 'Ole Dahl', '05059398765', 'vear 1', 'Tønsberg', '3160', '84515684', 'olef93@gmail.com', 'Bil og førerkort', '3', '1');
 
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur for tabell `stemmesteder`
+--
+
+CREATE TABLE `stemmesteder` (
+  `id` int(10) NOT NULL,
+  `kretsNr` int(10) NOT NULL,
+  `sted` char(55) COLLATE utf8_unicode_ci NOT NULL,
+  `stemmeBer` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dataark for tabell `stemmesteder`
+--
+
+INSERT INTO `stemmesteder` (`id`, `kretsNr`, `sted`, `stemmeBer`) VALUES
+(1, 1, 're', 1000),
+(2, 2, 'stokke', 1200),
+(3, 3, 'tønsberg', 25000),
+(4, 4, 'våle', 589);
+
 --
 -- Indexes for dumped tables
 --
@@ -180,6 +232,13 @@ INSERT INTO `soknad` (`id`, `navn`, `fodselnr`, `adresse`, `city`, `postkode`, `
 ALTER TABLE `aktiver_bruker_passord_pollett`
   ADD PRIMARY KEY (`bruker_id`),
   ADD KEY `bruker_id` (`bruker_id`);
+
+--
+-- Indexes for table `ansatt`
+--
+ALTER TABLE `ansatt`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_kretsnr` (`kretsNr`);
 
 --
 -- Indexes for table `brukere`
@@ -229,8 +288,21 @@ ALTER TABLE `soknad`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `stemmesteder`
+--
+ALTER TABLE `stemmesteder`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kretsNr` (`kretsNr`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `ansatt`
+--
+ALTER TABLE `ansatt`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `brukere`
@@ -245,6 +317,12 @@ ALTER TABLE `soknad`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `stemmesteder`
+--
+ALTER TABLE `stemmesteder`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- Begrensninger for dumpede tabeller
 --
 
@@ -253,6 +331,12 @@ ALTER TABLE `soknad`
 --
 ALTER TABLE `aktiver_bruker_passord_pollett`
   ADD CONSTRAINT `aktiver_bruker_passord_pollett_ibfk_1` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
+
+--
+-- Begrensninger for tabell `ansatt`
+--
+ALTER TABLE `ansatt`
+  ADD CONSTRAINT `fk_kretsnr` FOREIGN KEY (`kretsNr`) REFERENCES `stemmesteder` (`kretsNr`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Begrensninger for tabell `bruker_info`
