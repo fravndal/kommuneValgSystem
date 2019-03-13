@@ -1,0 +1,12 @@
+1. Legge til feilmelding at brukeren er utestengt
+3. Fikse opp i resterende feilmeldinger
+3. Lage søknadskjema
+
+
+
+
+
+Ferdig:
+2. Legge til feilmelding at brukernavn eller passord er feil
+5. Legge til funksjon for husk meg
+6. Legge til funksjon for glemt passord
