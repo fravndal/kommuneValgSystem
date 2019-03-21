@@ -78,7 +78,7 @@ if(!empty($_POST['approved'])) {
     $mail -> sendMail($mail, $name, $subject, $body);
 
 
-    // Set cookie for user and send user to dashboard
+    // Set cookie for user and send user to dashboardd
     setcookie("message", 'Søknaden er avslått og mail har blitt sendt til bruker.', time()+10, '/');
     header('Location: applicationHandle.php');
 }
