@@ -1,0 +1,47 @@
+
+
+body {
+    background-color: white;
+    border: 2px solid orange;
+    width: 500px;
+    height: 400px;
+    padding: 15px 5px;
+}
+
+
+.brukernavn {
+    height: 50px;
+    width: 300px;
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 20px;  
+}
+
+.tekstfelt {
+    height: 70px;
+    width: 300px;
+    padding: 15px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+
+
+a {
+    background-color: #60A3BC;
+    border: none;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 7px 30px;
+}
+
+
+
+
+
+

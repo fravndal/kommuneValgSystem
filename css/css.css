@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+* {box-sizing: border-box;}
+
+
+
+/*Styler iframe*/
+iframe {
+    width: 600px;
+    height: 250px;
+    background-image: url("../images/betong.png");
+}
+
+.col-sm-8 {
+    padding: 20px 80px;
+}
+
+.boks {
+    padding: 295px 780px;
+    position: absolute;
+}
+
+.container {
+    padding: 1px 780px;
+    position: absolute;
+
+}
+
+
+
+
+/*Styler menyen på venstre siden */
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    height: 70px;
+    background-image: url("../images/betong.png");
+    border-bottom: 5px solid orange;
+}
+
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 633px;
+    /* Her er det noe som ikke stemmer! Kan dra siden lang utover */
+    width: 134%;
+    background-color: white;
+
+
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 30px;
+    background-image: url("../images/betong.png");
+    height: 100%;
+    width: 100px;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-image: url("../images/betong.png");
+    color: black;
+    padding: 6px;
+    border-top: 5px solid orange;
+
+}
+
+/*Stylingen for dropdown funksjonen */
+.dropbtn {
+    background-color: #FF8C00;
+    color: white;
+    padding: 16px;
+    font-size: 14px;
+    border: none;
+    padding: 10px 35px;
+    border-radius: 2px;
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    left: 170%;
+    padding-top: 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #60A3BC;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-image: url("../images/betong.png");
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: orange;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .row.content {height:auto;}
+}
+
+
+
