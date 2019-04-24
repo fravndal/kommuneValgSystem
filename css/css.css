@@ -1,31 +1,28 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
-* {box-sizing: border-box;}
+
 
 
 
 /*Styler iframe*/
-iframe {
+/*iframe {
     width: 600px;
     height: 250px;
     background-image: url("../images/betong.png");
-}
+}*/
 
-.col-sm-8 {
-    padding: 20px 80px;
-}
 
-.boks {
+/*.boks {
     padding: 295px 780px;
     position: absolute;
-}
+}*/
 
-.container {
+/*.container {
     padding: 1px 780px;
     position: absolute;
 
-}
+}*/
 
 
 
@@ -42,22 +39,31 @@ iframe {
 
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
+/*.row.content {
     height: 633px;
-    /* Her er det noe som ikke stemmer! Kan dra siden lang utover */
+    !* Her er det noe som ikke stemmer! Kan dra siden lang utover *!
     width: 134%;
     background-color: white;
 
 
-}
+}*/
 
 /* Set gray background color and 100% height */
+
 .sidenav {
-    padding-top: 30px;
+    height: 100%; /* 100% Full-height */
+    width: 40px; /* 0 width - change this with JavaScript */
+
+    z-index: 1; /* Stay on top */
+
+
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     background-image: url("../images/betong.png");
-    height: 100%;
-    width: 100px;
 }
+
 
 /* Set black background color, white text and some padding */
 footer {
@@ -69,27 +75,21 @@ footer {
 }
 
 /*Stylingen for dropdown funksjonen */
-.dropbtn {
-    background-color: #FF8C00;
-    color: white;
-    padding: 16px;
-    font-size: 14px;
-    border: none;
-    padding: 10px 35px;
-    border-radius: 2px;
 
-}
 
 .dropdown {
     position: relative;
     display: inline-block;
-    left: 170%;
     padding-top: 12px;
 }
 
+
+
 .dropdown-content {
     display: none;
+    margin-top: 20px;
     position: absolute;
+    right: 0;
     background-color: #60A3BC;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

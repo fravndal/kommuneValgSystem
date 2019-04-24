@@ -68,7 +68,7 @@ INSERT INTO `ansatt` (`id`, `kretsNr`, `navn`, `telefon`, `email`, `fodselsaar`,
 (1, 1, 'Fredrik Hulaas', '98821561', 'hønefoss@gamil.com', 1993, 1, 0, 0, 0),
 (2, 2, 'Fredrik Ravndal', '98821562', 'hønefoss1@hot.com', 1994, 0, 1, 0, 1),
 (3, 2, 'Ole Kristian Gran', '98821563', 'hønefoss2@live.com', 1995, 0, 1, 0, 0),
-(4, 3, 'Håvard Betten', '98821564', 'hønefos3s@msn.com', 1996, 0, 0, 1, 0);
+(4, 3, 'Håvard Betten', '98821564', 'hønefos3s@msn.com', 1996, 0, 0, 1
 
 -- --------------------------------------------------------
 
@@ -413,3 +413,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+, 0);
