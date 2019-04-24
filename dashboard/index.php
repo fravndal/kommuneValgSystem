@@ -78,6 +78,7 @@ if(isset($_COOKIE['message'])) {
             <a><i class="fa fa-calendar" aria-hidden="true"><i style="display: none;">Kalender</i></i></a>
             <a><i class="fa fa-building-o" aria-hidden="true"><i style="display: none;">Min arbeidsplan</i></i></a>
             <a><i class="fa fa-commenting-o" aria-hidden="true"><i style="display: none;">Chat</i></i></a>
+    <a href="../include_login/logout.php"><span  class="glyphicon glyphicon-log-in" title="Logg ut" style="color: black;"></span> Logg ut </a>
 
 </div>
 
