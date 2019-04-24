@@ -87,7 +87,7 @@ if (!empty($_POST['email'] and $_POST['p'])) {
                     $random_password = $util->getToken(16);
                     $random_selector = $util->getToken(32);
                     setcookie("user_login", $user_id, $cookie_expiration_time, '/', $domain, FALSE, TRUE);
-                    setcookie("user_name", $username, $cookie_expiration_time, '/',$domain,FASLE,TRUE);
+                    setcookie("user_name", $username, $cookie_expiration_time, '/',$domain,FALSE,TRUE);
 
 
                     setcookie("random_password", $random_password, $cookie_expiration_time, '/', $domain, FALSE, TRUE);
