@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidenav {
+    z-index: 1; /* Stay on top */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    background-image: url("../images/betong.png");
+    height: 50px;
+    font-size: 25px;
+    text-align: center;
+}
+
+.sidenav .fa {
+    padding: 5px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    height: 70px;
+    background-image: url("../images/betong.png");
+    border-bottom: 5px solid orange;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    padding-top: 12px;
+}
+
+.dropdown-content {
+    display: none;
+    right: 0;
+    background-color: #60A3BC;
+    min-width: 50px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+
+footer {
+    background-image: url("../images/betong.png");
+    color: black;
+    padding: 6px;
+    border-top: 5px solid orange;
+
+}
+
+#framediv {
+    height: 500px;
+}
+
+#frame {
+    width: 100%;
+    height: 85%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.dropdown-sidenav {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-sidenav-content {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+.dropdown-sidenav:hover .dropdown-sidenav-content {
+    display: block;
+}
