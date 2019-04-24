@@ -50,6 +50,8 @@ if (!empty($_POST['email'] and $_POST['p'])) {
 
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST['p']; // The hashed password.
+    $domain = $_SERVER['HTTP_HOST'];
+    setcookie("set_email", $email, 0, '/', $domain,FALSE,TRUE);
 
 
     if($isCaptchaSet == true and $isSet == true or $isSet == false) {
@@ -72,7 +74,7 @@ if (!empty($_POST['email'] and $_POST['p'])) {
 
 
                 $current_time = time();
-                $domain = $_SERVER['HTTP_HOST'];
+
 
                 $hash = hash('sha512',$email . $current_time . $user_id . $domain);
                 $auth->deleteHash($user_id);
