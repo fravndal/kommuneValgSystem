@@ -50,6 +50,14 @@ class Auth {
 	    $result = $pdo->runQuery($query, $param_value_array);
 	    return $result;
     }
+
+    function getAdminByID($user_id) {
+        $pdo = new DBController();
+        $query = "SELECT admin FROM brukere WHERE id = :user_id";
+        $param_value_array = array(':user_id' => $user_id);
+        $result = $pdo->runQuery($query, $param_value_array);
+        return $result;
+    }
     
     /*function markAsExpired($user_id) {
         $pdo = new DBController();
