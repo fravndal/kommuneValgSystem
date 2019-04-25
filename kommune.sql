@@ -115,6 +115,10 @@ CREATE TABLE `bruker_info` (
   `dataferd` enum('1','2','3','4','5') COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+
+
+
+
 --
 -- Dumping data for table `bruker_info`
 --
@@ -127,6 +131,21 @@ INSERT INTO `bruker_info` (`bruker_id`, `navn`, `fodselnr`, `adresse`, `city`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `image_table`
+--
+
+CREATE TABLE `image_table` (
+  `img_id` int(11) NOT NULL AUTO_INCREMENT,
+  `bruker_id` int(11) NOT NULL,
+  `img_name` varchar(255) NOT NULL,
+  `img_path` varchar(255) NOT NULL,
+  PRIMARY KEY (image_id),
+  UNIQUE (bruker_id)    
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+--
 -- Table structure for table `cookie_logginn_autentisering`
 --
 
@@ -134,6 +153,8 @@ CREATE TABLE `cookie_logginn_autentisering` (
   `bruker_id` int(11) NOT NULL,
   `hash` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 
 --
 -- Dumping data for table `cookie_logginn_autentisering`
