@@ -145,9 +145,15 @@ if ($isLoggedIn) {
 <script type="text/JavaScript" src="../js_login/sha512.js"></script>
 <script type="text/JavaScript" src="../js_login/forms.js"></script>
 <script type="text/JavaScript">
+    var emailInput = document.getElementById("email");
     var passwordInput = document.getElementById("password");
     var rememberInput = document.getElementById("customControlInline");
 
+    emailInput.addEventListener("keyup", function (event) {
+        if(event.keyCode === 13) {
+            document.getElementById("login-button").click();
+        }
+    });
     passwordInput.addEventListener("keyup", function (event) {
         if(event.keyCode === 13) {
             document.getElementById("login-button").click();

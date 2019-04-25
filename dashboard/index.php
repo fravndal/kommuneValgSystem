@@ -42,12 +42,9 @@ if (isset($_COOKIE['user_login'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/dashboardDefaultCss.css" media="screen and (max-width: 600px)"/>
-    <link rel="stylesheet" type="text/css" media="screen and (min-width: 1051px) and (max-width: 1920px)" href="../css/dashboard1920Css.css"/>
-
+<!--    <link rel="stylesheet" media="screen and (min-width: 1051px)" href="../css/dashboard1920Css.css">-->
+    <link rel="stylesheet"  href="../css/dashboardDefaultCss.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -55,8 +52,31 @@ if (isset($_COOKIE['user_login'])) {
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <style>
+        @media screen and (min-width: 1051px) and (max-width: 1920px) {
+            #framediv {
+                height: 800px;
+            }
+
+            #frame {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding-top: 12px;
+        }
 
 
+        .sidenav {
+            z-index: 1; /* Stay on top */
+            overflow-y: hidden; /* Disable horizontal scroll */
+            transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+            background-image: url("../images/betong.png");
+            height: 50px;
+            font-size: 25px;
+        }
 
     </style>
 
@@ -66,9 +86,9 @@ if (isset($_COOKIE['user_login'])) {
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="../dashboard/">  <img src="../images/logo.svg" alt="Ringerike kommune" title="Hjem" style="width:300px;height:50px;"></a>
+        <a class="navbar-brand" href="#">  <img src="../images/logo.svg" alt="Ringerike kommune" title="Hjem" style="width:300px;height:50px;"></a>
 
-        <div class="dropdown" id="dropdown" style="float: right;">
+        <div class="dropdown" style="float: right;">
             <i class="fa fa-cog" aria-hidden="true" onclick="openRightMenu()" style="font-size: 35px;">
             </i>
         </div>
@@ -78,8 +98,8 @@ if (isset($_COOKIE['user_login'])) {
             <p>Innlogget bruker: <br>  <?php echo $_COOKIE['user_name'];?></p>
             <a href="#" class="w3-bar-item w3-button">Bruker</a>
             <a href="#" class="w3-bar-item w3-button">Informasjon</a>
-            <a href="../change_pw/index.php" target="targetFrame" class="w3-bar-item w3-button"><span class="fa fa-key" title="Endre passord" style="color: black;"> Endre passord</span></a>
-            <a href="../include_login/logout.php" class="w3-bar-item w3-button"><span class="fa fa-sign-out" title="Logg ut" style="color: black;"></span> Logg ut </a>
+            <a href="#" class="w3-bar-item w3-button">Endre passord</a>
+            <a href="../include_login/logout.php" class="w3-bar-item w3-button"><span  class="glyphicon glyphicon-log-in" title="Logg ut" style="color: black;"></span> Logg ut </a>
         </div>
 
 
@@ -87,42 +107,28 @@ if (isset($_COOKIE['user_login'])) {
 </nav>
 
 <!-- Venstre side -->
-<div class="d-flex justify-content-between" id="main-content">
-    <div class="sidenav col-sm-1" id="sidenav">
+<div class="sidenav">
 
-        <div class="dropdown-sidenav">
-            <a><i class="fa fa-calendar" aria-hidden="true"><i id="calendarText" style="display: none;">Kalender</i></i></a>
-            <a><i class="fa fa-building-o" aria-hidden="true"><i id="worksheetText" style="display: none;">Min arbeidsplan</i></i></a>
-            <a><i class="fa fa-commenting-o" aria-hidden="true"><i id="chatText" style="display: none;">Chat</i></i></a>
-            <?php if ($isAdmin == '1') {
-                echo '<a href="../admin/administrerBrukere.php" target="targetFrame"><i class="fa fa-wrench" aria-hidden="true"><i id="administratorText" style="display: none;">Administrering</i></i></a>';
-            } ?>
-        </div>
+    <div class="dropdown-sidenav">
+        <a><i class="fa fa-calendar" aria-hidden="true"><i style="display: none;">Kalender</i></i></a>
+        <a><i class="fa fa-building-o" aria-hidden="true"><i style="display: none;">Min arbeidsplan</i></i></a>
+        <a><i class="fa fa-commenting-o" aria-hidden="true"><i style="display: none;">Chat</i></i></a>
+        <?php if ($isAdmin == '1') {
+            echo '<a href="../admin/administrerBrukere.php" target="targetFrame"><i class="fa fa-wrench" aria-hidden="true"><i style="display: none;">Administrering</i></i></a>';
+        } ?>
     </div>
-    <div class="sidenav col-sm-1" id="sidenav-placeholder">
-
-    </div>
-    <div id="framediv" class="col-sm-11">
-        <iframe id="frame" name="targetFrame" src="startpage.php"></iframe>
-
-    </div>
-
 </div>
 
-
-<div class="footer-copyright text-center col-sm-12" id="footer">© 2018 Copyright:
-    <p> Ringerike Kommune</p>
+<div id="framediv"  class="container">
+    <iframe id="frame" name="targetFrame" src="../oversikt/oversikt.php"></iframe>
+    <footer class="container-fluid text-center">
+        <p>Footer Text</p>
+    </footer>
 </div>
-
-
-
-
 
 </body>
-<script type="text/JavaScript" src="sidenav.js"></script>
-<script type="text/JavaScript">
 
-
+<script>
 
     function openRightMenu() {
         document.getElementById("rightMenu").style.display = "block";
@@ -132,13 +138,22 @@ if (isset($_COOKIE['user_login'])) {
         document.getElementById("rightMenu").style.display = "none";
     }
 
-
-
-    /*$('#chatknapp').click(function () {
+    $('#chatknapp').click(function () {
         $('#maincontent').load("../chat/chat.php");
         return false;
 
-    });*/
+    });
+
+    // $('#sidenav').hover(
+    //
+    //     function () {
+    //         $('calendar').css({"display":"in-line"});
+    //     },
+    //
+    //     function () {
+    //         $('calendar').css({"display":"none"});
+    //     }
+    // );
 </script>
 </html>
 
