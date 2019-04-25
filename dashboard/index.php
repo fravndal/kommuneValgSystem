@@ -2,6 +2,8 @@
 session_start();
 
 require_once "../include_login/authCookieSessionValidate.php";
+$auth = new Auth();
+
 
 if(!$isLoggedIn) {
     header("Location: ../");
@@ -18,6 +20,14 @@ if(isset($_COOKIE['message'])) {
     <?php
 
 }
+
+if (isset($_COOKIE['user_login'])) {
+    $user_id = $_COOKIE['user_login'];
+    $getAdmin = $auth->getAdminByID($user_id);
+    $isAdmin = $getAdmin[0]['admin'];
+//    die(var_dump($isAdmin));
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -44,26 +54,29 @@ if(isset($_COOKIE['message'])) {
     <style>
         @media screen and (min-width: 1051px) and (max-width: 1920px) {
             #framediv .container {
-                height: 450px;
+                height: 800px;
+            }
+
+            #frame {
+                height: 100%;
                 width: 100%;
             }
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding-top: 12px;
+        }
 
-            .dropdown {
-                position: relative;
-                display: inline-block;
-                padding-top: 12px;
-            }
 
-
-            .sidenav {
-                z-index: 1; /* Stay on top */
-                overflow-y: hidden; /* Disable horizontal scroll */
-                transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-                background-image: url("../images/betong.png");
-                height: 50px;
-                font-size: 25px;
-            }
-
+        .sidenav {
+            z-index: 1; /* Stay on top */
+            overflow-y: hidden; /* Disable horizontal scroll */
+            transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+            background-image: url("../images/betong.png");
+            height: 50px;
+            font-size: 25px;
+        }
 
     </style>
 
@@ -100,16 +113,14 @@ if(isset($_COOKIE['message'])) {
         <a><i class="fa fa-calendar" aria-hidden="true"><i style="display: none;">Kalender</i></i></a>
         <a><i class="fa fa-building-o" aria-hidden="true"><i style="display: none;">Min arbeidsplan</i></i></a>
         <a><i class="fa fa-commenting-o" aria-hidden="true"><i style="display: none;">Chat</i></i></a>
-        <div class="dropdown-sidenav-content">
-            <a href="#">Kalender</a>
-            <a href="#">Arbeidsplan</a>
-            <a href="#">Chat</a>
-        </div>
+        <?php if ($isAdmin == '1') {
+            echo '<a href="../admin/administrerBrukere.php" target="targetFrame"><i class="fa fa-wrench" aria-hidden="true"><i style="display: none;">Administrering</i></i></a>';
+        } ?>
     </div>
 </div>
 
-<div id="framediv" class="container">
-    <iframe id="frame" src="../oversikt/oversikt.php"></iframe>
+<div id="framediv"  class="container">
+    <iframe id="frame" name="targetFrame" src="../oversikt/oversikt.php"></iframe>
     <footer class="container-fluid text-center">
         <p>Footer Text</p>
     </footer>
