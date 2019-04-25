@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2019 at 02:10 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- Generation Time: 25. Apr, 2019 23:25 PM
+-- Server-versjon: 5.7.22-log
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aktiver_bruker_passord_pollett`
+-- Tabellstruktur for tabell `aktiver_bruker_passord_pollett`
 --
 
 CREATE TABLE `aktiver_bruker_passord_pollett` (
@@ -35,7 +35,7 @@ CREATE TABLE `aktiver_bruker_passord_pollett` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `aktiver_bruker_passord_pollett`
+-- Dataark for tabell `aktiver_bruker_passord_pollett`
 --
 
 INSERT INTO `aktiver_bruker_passord_pollett` (`bruker_id`, `velg_hash`, `pollett`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `aktiver_bruker_passord_pollett` (`bruker_id`, `velg_hash`, `pollett
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ansatt`
+-- Tabellstruktur for tabell `ansatt`
 --
 
 CREATE TABLE `ansatt` (
@@ -61,33 +61,33 @@ CREATE TABLE `ansatt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `ansatt`
+-- Dataark for tabell `ansatt`
 --
 
 INSERT INTO `ansatt` (`id`, `kretsNr`, `navn`, `telefon`, `email`, `fodselsaar`, `leder`, `nestLeder`, `sekreter`, `vaktmester`) VALUES
 (1, 1, 'Fredrik Hulaas', '98821561', 'hønefoss@gamil.com', 1993, 1, 0, 0, 0),
 (2, 2, 'Fredrik Ravndal', '98821562', 'hønefoss1@hot.com', 1994, 0, 1, 0, 1),
 (3, 2, 'Ole Kristian Gran', '98821563', 'hønefoss2@live.com', 1995, 0, 1, 0, 0),
-(4, 3, 'Håvard Betten', '98821564', 'hønefos3s@msn.com', 1996, 0, 0, 1
+(4, 3, 'Håvard Betten', '98821564', 'hønefos3s@msn.com', 1996, 0, 0, 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brukere`
+-- Tabellstruktur for tabell `brukere`
 --
 
 CREATE TABLE `brukere` (
   `id` int(11) NOT NULL,
-  `epost` varchar(50) NOT NULL,
-  `passord` char(128) NOT NULL,
-  `salt` char(128) NOT NULL,
-  `rolle` varchar(50) DEFAULT NULL,
+  `epost` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `passord` char(128) COLLATE utf8_unicode_ci NOT NULL,
+  `salt` char(128) COLLATE utf8_unicode_ci NOT NULL,
+  `rolle` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   `aktivert` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `brukere`
+-- Dataark for tabell `brukere`
 --
 
 INSERT INTO `brukere` (`id`, `epost`, `passord`, `salt`, `rolle`, `admin`, `aktivert`) VALUES
@@ -99,7 +99,7 @@ INSERT INTO `brukere` (`id`, `epost`, `passord`, `salt`, `rolle`, `admin`, `akti
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bruker_info`
+-- Tabellstruktur for tabell `bruker_info`
 --
 
 CREATE TABLE `bruker_info` (
@@ -115,12 +115,8 @@ CREATE TABLE `bruker_info` (
   `dataferd` enum('1','2','3','4','5') COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
-
-
-
 --
--- Dumping data for table `bruker_info`
+-- Dataark for tabell `bruker_info`
 --
 
 INSERT INTO `bruker_info` (`bruker_id`, `navn`, `fodselnr`, `adresse`, `city`, `postkode`, `telefon`, `bil`, `norskferd`, `dataferd`) VALUES
@@ -131,22 +127,7 @@ INSERT INTO `bruker_info` (`bruker_id`, `navn`, `fodselnr`, `adresse`, `city`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image_table`
---
-
-CREATE TABLE `image_table` (
-  `img_id` int(11) NOT NULL AUTO_INCREMENT,
-  `bruker_id` int(11) NOT NULL,
-  `img_name` varchar(255) NOT NULL,
-  `img_path` varchar(255) NOT NULL,
-  PRIMARY KEY (image_id),
-  UNIQUE (bruker_id)    
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
-
---
--- Table structure for table `cookie_logginn_autentisering`
+-- Tabellstruktur for tabell `cookie_logginn_autentisering`
 --
 
 CREATE TABLE `cookie_logginn_autentisering` (
@@ -154,10 +135,8 @@ CREATE TABLE `cookie_logginn_autentisering` (
   `hash` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-
 --
--- Dumping data for table `cookie_logginn_autentisering`
+-- Dataark for tabell `cookie_logginn_autentisering`
 --
 
 INSERT INTO `cookie_logginn_autentisering` (`bruker_id`, `hash`) VALUES
@@ -166,7 +145,7 @@ INSERT INTO `cookie_logginn_autentisering` (`bruker_id`, `hash`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `glemt_passord_pollett`
+-- Tabellstruktur for tabell `glemt_passord_pollett`
 --
 
 CREATE TABLE `glemt_passord_pollett` (
@@ -177,7 +156,7 @@ CREATE TABLE `glemt_passord_pollett` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `glemt_passord_pollett`
+-- Dataark for tabell `glemt_passord_pollett`
 --
 
 INSERT INTO `glemt_passord_pollett` (`bruker_id`, `velg_hash`, `pollett`, `utløpt_dato`) VALUES
@@ -186,7 +165,20 @@ INSERT INTO `glemt_passord_pollett` (`bruker_id`, `velg_hash`, `pollett`, `utlø
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logginn_forsok`
+-- Tabellstruktur for tabell `image_table`
+--
+
+CREATE TABLE `image_table` (
+  `img_id` int(11) NOT NULL,
+  `bruker_id` int(11) NOT NULL,
+  `img_name` varchar(255) NOT NULL,
+  `img_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur for tabell `logginn_forsok`
 --
 
 CREATE TABLE `logginn_forsok` (
@@ -198,7 +190,7 @@ CREATE TABLE `logginn_forsok` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `opplæringsmateriell`
+-- Tabellstruktur for tabell `opplæringsmateriell`
 --
 
 CREATE TABLE `opplæringsmateriell` (
@@ -211,7 +203,7 @@ CREATE TABLE `opplæringsmateriell` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pollett_logginn_autentisering`
+-- Tabellstruktur for tabell `pollett_logginn_autentisering`
 --
 
 CREATE TABLE `pollett_logginn_autentisering` (
@@ -225,7 +217,7 @@ CREATE TABLE `pollett_logginn_autentisering` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `soknad`
+-- Tabellstruktur for tabell `soknad`
 --
 
 CREATE TABLE `soknad` (
@@ -243,7 +235,7 @@ CREATE TABLE `soknad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `soknad`
+-- Dataark for tabell `soknad`
 --
 
 INSERT INTO `soknad` (`id`, `navn`, `fodselnr`, `adresse`, `city`, `postkode`, `telefon`, `email`, `bil`, `norskferd`, `dataferd`) VALUES
@@ -252,7 +244,7 @@ INSERT INTO `soknad` (`id`, `navn`, `fodselnr`, `adresse`, `city`, `postkode`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stemmesteder`
+-- Tabellstruktur for tabell `stemmesteder`
 --
 
 CREATE TABLE `stemmesteder` (
@@ -263,7 +255,7 @@ CREATE TABLE `stemmesteder` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `stemmesteder`
+-- Dataark for tabell `stemmesteder`
 --
 
 INSERT INTO `stemmesteder` (`id`, `kretsNr`, `sted`, `stemmeBer`) VALUES
@@ -319,6 +311,12 @@ ALTER TABLE `glemt_passord_pollett`
   ADD KEY `bruker_id` (`bruker_id`);
 
 --
+-- Indexes for table `image_table`
+--
+ALTER TABLE `image_table`
+  ADD PRIMARY KEY (`img_id`);
+
+--
 -- Indexes for table `logginn_forsok`
 --
 ALTER TABLE `logginn_forsok`
@@ -367,10 +365,16 @@ ALTER TABLE `brukere`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
+-- AUTO_INCREMENT for table `image_table`
+--
+ALTER TABLE `image_table`
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `opplæringsmateriell`
 --
 ALTER TABLE `opplæringsmateriell`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `soknad`
@@ -385,47 +389,47 @@ ALTER TABLE `stemmesteder`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Begrensninger for dumpede tabeller
 --
 
 --
--- Constraints for table `aktiver_bruker_passord_pollett`
+-- Begrensninger for tabell `aktiver_bruker_passord_pollett`
 --
 ALTER TABLE `aktiver_bruker_passord_pollett`
   ADD CONSTRAINT `aktiver_bruker_passord_pollett_ibfk_1` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
 
 --
--- Constraints for table `ansatt`
+-- Begrensninger for tabell `ansatt`
 --
 ALTER TABLE `ansatt`
   ADD CONSTRAINT `fk_kretsnr` FOREIGN KEY (`kretsNr`) REFERENCES `stemmesteder` (`kretsNr`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `bruker_info`
+-- Begrensninger for tabell `bruker_info`
 --
 ALTER TABLE `bruker_info`
   ADD CONSTRAINT `bruker_info_ibfk_1` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
 
 --
--- Constraints for table `cookie_logginn_autentisering`
+-- Begrensninger for tabell `cookie_logginn_autentisering`
 --
 ALTER TABLE `cookie_logginn_autentisering`
   ADD CONSTRAINT `cookie_logginn_autentisering_ibfk_1` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
 
 --
--- Constraints for table `glemt_passord_pollett`
+-- Begrensninger for tabell `glemt_passord_pollett`
 --
 ALTER TABLE `glemt_passord_pollett`
   ADD CONSTRAINT `glemt_passord_pollett_ibfk_1` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
 
 --
--- Constraints for table `logginn_forsok`
+-- Begrensninger for tabell `logginn_forsok`
 --
 ALTER TABLE `logginn_forsok`
   ADD CONSTRAINT `logginn_forsok_ibfk_1` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
 
 --
--- Constraints for table `pollett_logginn_autentisering`
+-- Begrensninger for tabell `pollett_logginn_autentisering`
 --
 ALTER TABLE `pollett_logginn_autentisering`
   ADD CONSTRAINT `pollett_logginn_autentisering_ibfk_1` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
@@ -434,4 +438,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-, 0);
