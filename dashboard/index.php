@@ -66,20 +66,25 @@ if (isset($_COOKIE['user_login'])) {
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="../dashboard/">  <img src="../images/logo.svg" alt="Ringerike kommune" title="Hjem" style="width:300px;height:50px;"></a>
+        <div class="dropdown" id="left-dropdown" style="float: left;">
+            <i class="fa fa-bars" aria-hidden="true" onclick="openLeftMenu(); displayText(); closeRightMenu()" style="font-size: 35px;">
+            </i>
+        </div>
+
+        <a class="navbar-brand" id="logoFrame" href="../dashboard/" >  <img id="logo" src="../images/logo.svg" alt="Ringerike kommune" title="Hjem" > <!--style="height: 50px; width: 300px;--></a>
 
         <div class="dropdown" id="dropdown" style="float: right;">
-            <i class="fa fa-cog" aria-hidden="true" onclick="openRightMenu()" style="font-size: 35px;">
+            <i class="fa fa-cog" aria-hidden="true" onclick="openRightMenu(); closeLeftMenu()" style="font-size: 35px;">
             </i>
         </div>
 
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none; right:0;" id="rightMenu">
-            <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+            <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Lukk &times;</button>
             <p>Innlogget bruker: <br>  <?php echo $_COOKIE['user_name'];?></p>
-            <a href="#" class="w3-bar-item w3-button">Bruker</a>
-            <a href="#" class="w3-bar-item w3-button">Informasjon</a>
-            <a href="../change_pw/index.php" target="targetFrame" class="w3-bar-item w3-button"><span class="fa fa-key" title="Endre passord" style="color: black;"> Endre passord</span></a>
-            <a href="../include_login/logout.php" class="w3-bar-item w3-button"><span class="fa fa-sign-out" title="Logg ut" style="color: black;"></span> Logg ut </a>
+            <a href="#" class="w3-bar-item w3-button" onclick="closeRightMenu()">Bruker</a>
+            <a href="#" class="w3-bar-item w3-button" onclick="closeRightMenu()">Informasjon</a>
+            <a href="../change_pw/index.php" target="targetFrame" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-key" title="Endre passord" style="color: black;"> Endre passord</span></a>
+            <a href="../include_login/logout.php" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-sign-out" title="Logg ut" style="color: black;"></span> Logg ut </a>
         </div>
 
 
@@ -87,10 +92,12 @@ if (isset($_COOKIE['user_login'])) {
 </nav>
 
 <!-- Venstre side -->
+
 <div class="d-flex justify-content-between" id="main-content">
     <div class="sidenav col-sm-1" id="sidenav">
 
-        <div class="dropdown-sidenav">
+        <div class="dropdown-sidenav" id="leftMenu">
+            <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large" id="left-close-button">Lukk &times;</button>
             <a><i class="fa fa-calendar" aria-hidden="true"><i id="calendarText" style="display: none;">Kalender</i></i></a>
             <a><i class="fa fa-building-o" aria-hidden="true"><i id="worksheetText" style="display: none;">Min arbeidsplan</i></i></a>
             <a><i class="fa fa-commenting-o" aria-hidden="true"><i id="chatText" style="display: none;">Chat</i></i></a>
@@ -110,7 +117,7 @@ if (isset($_COOKIE['user_login'])) {
 </div>
 
 
-<div class="footer-copyright text-center col-sm-12" id="footer">© 2018 Copyright:
+<div class="footer-copyright text-center col-sm-12" id="footer">© 2019 Copyright:
     <p> Ringerike Kommune</p>
 </div>
 
@@ -122,6 +129,21 @@ if (isset($_COOKIE['user_login'])) {
 <script type="text/JavaScript" src="sidenav.js"></script>
 <script type="text/JavaScript">
 
+    function openLeftMenu() {
+        document.getElementById("sidenav").style.display = "inline-block";
+    }
+
+    function displayText() {
+        document.getElementById("calendarText").style.display = "inline";
+        document.getElementById("worksheetText").style.display = "inline";
+        document.getElementById("chatText").style.display = "inline";
+        document.getElementById("administratorText").style.display = "inline";
+
+    }
+
+    function closeLeftMenu() {
+        document.getElementById("sidenav").style.display = "none";
+    }
 
 
     function openRightMenu() {

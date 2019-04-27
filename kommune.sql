@@ -48,7 +48,7 @@ INSERT INTO `aktiver_bruker_passord_pollett` (`bruker_id`, `velg_hash`, `pollett
 --
 
 CREATE TABLE `ansatt` (
-  `id` int(10) NOT NULL,
+  `bruker_id` int(11) NOT NULL,
   `kretsNr` int(10) NOT NULL,
   `navn` char(100) COLLATE utf8_unicode_ci NOT NULL,
   `telefon` varchar(8) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -60,15 +60,7 @@ CREATE TABLE `ansatt` (
   `vaktmester` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `ansatt`
---
 
-INSERT INTO `ansatt` (`id`, `kretsNr`, `navn`, `telefon`, `email`, `fodselsaar`, `leder`, `nestLeder`, `sekreter`, `vaktmester`) VALUES
-(1, 1, 'Fredrik Hulaas', '98821561', 'hønefoss@gamil.com', 1993, 1, 0, 0, 0),
-(2, 2, 'Fredrik Ravndal', '98821562', 'hønefoss1@hot.com', 1994, 0, 1, 0, 1),
-(3, 2, 'Ole Kristian Gran', '98821563', 'hønefoss2@live.com', 1995, 0, 1, 0, 0),
-(4, 3, 'Håvard Betten', '98821564', 'hønefos3s@msn.com', 1996, 0, 0, 1
 
 -- --------------------------------------------------------
 
@@ -287,7 +279,7 @@ ALTER TABLE `aktiver_bruker_passord_pollett`
 -- Indexes for table `ansatt`
 --
 ALTER TABLE `ansatt`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`bruker_id`),
   ADD KEY `fk_kretsnr` (`kretsNr`);
 
 --
@@ -357,14 +349,12 @@ ALTER TABLE `stemmesteder`
 --
 -- AUTO_INCREMENT for table `ansatt`
 --
-ALTER TABLE `ansatt`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `brukere`
 --
 ALTER TABLE `brukere`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `opplæringsmateriell`
@@ -399,6 +389,9 @@ ALTER TABLE `aktiver_bruker_passord_pollett`
 --
 ALTER TABLE `ansatt`
   ADD CONSTRAINT `fk_kretsnr` FOREIGN KEY (`kretsNr`) REFERENCES `stemmesteder` (`kretsNr`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE `ansatt`
+  ADD CONSTRAINT `ansatt_bruker_id_fk` FOREIGN KEY (`bruker_id`) REFERENCES `brukere` (`id`);
 
 --
 -- Constraints for table `bruker_info`
