@@ -1,5 +1,5 @@
 <?php
-require_once '../dashboard/Application.php';
+require_once '../admin/Application.php';
 
 // Get tokens
 $selector = $_POST['selector'];
