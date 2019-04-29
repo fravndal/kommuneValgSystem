@@ -43,6 +43,7 @@ if (isset($_COOKIE['user_login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/dashboardDefaultCss.css" media="screen and (max-width: 600px)"/>
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 601px) and (max-width: 1050px)" href="../css/dashboard1050Css.css"/>
     <link rel="stylesheet" type="text/css" media="screen and (min-width: 1051px) and (max-width: 1920px)" href="../css/dashboard1920Css.css"/>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -74,7 +75,7 @@ if (isset($_COOKIE['user_login'])) {
         <a class="navbar-brand" id="logoFrame" href="../dashboard/" >  <img id="logo" src="../images/logo.svg" alt="Ringerike kommune" title="Hjem" > <!--style="height: 50px; width: 300px;--></a>
 
         <div class="dropdown" id="dropdown" style="float: right;">
-            <i class="fa fa-cog" aria-hidden="true" onclick="openRightMenu(); closeLeftMenu()" style="font-size: 35px;">
+            <i class="fa fa-cog" aria-hidden="true" onclick="openRightMenu()" style="font-size: 35px;">
             </i>
         </div>
 

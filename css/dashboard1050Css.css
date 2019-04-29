@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#logo {
+    width: 300px;
+    height: 50px;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    height: 70px;
+    background-image: url("../images/betong.png");
+    border-bottom: 5px solid orange;
+}
+
+#left-dropdown {
+    display: none;
+}
+
+#left-close-button {
+    display: none;
+}
+
+#main-content {
+    height: 85vh; /* 100% Full-height */
+    width: 100%;
+}
+
+#calendarText {
+    display: inline;
+}
+
+#framediv  {
+    height: 600px;
+    margin: 0;
+    padding: 0;
+    width: 110%;
+}
+
+#frame {
+    height: 85vh;
+    width: 110%;
+
+}
+#dropdown {
+    position: relative;
+    display: inline-block;
+    padding-top: 12px;
+}
+#sidenav {
+    height: 45px;
+    overflow-y: hidden; /* Disable horizontal scroll */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    background-image: url("../images/betong.png");
+    font-size: 25px;
+    width: 100%; /* 0 width - change this with JavaScript */
+}
+
+#sidenav-placeholder {
+    display: none;
+}
+
+#footer {
+
+    background-image: url("../images/betong.png");
+    color: black;
+    padding: 6px;
+    border-top: 5px solid orange;
+
+}
