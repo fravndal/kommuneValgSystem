@@ -7,7 +7,7 @@ $pdo = new DBController();
 
 
 // File upload path
-$targetDir = "uploads/";
+$targetDir = "../uploads/";
 $fileName = basename($_FILES["file"]["name"]);
 $targetFilePath = $targetDir . $fileName;
 $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
@@ -18,10 +18,11 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
     if(in_array($fileType, $allowTypes)){
         // Last opp fil, til server
         if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
-            echo (heihei);
             // Legg inn filnavn i databasen
-            $insert = $db->query("INSERT into opplæringsmateriell (file_name, uploaded_on) VALUES ('".$fileName."', NOW())");
-            if($insert){
+            $query=("INSERT into opplæringsmateriell (file_name, uploaded_on) VALUES (:file_name, NOW())");
+            $param_value_array = array(':file_name' => $fileName);
+            $pdo->insert($query, $param_value_array);
+            if($pdo){
                 $statusMsg = "Filen ".$fileName. " har blitt lastet opp.";
             }else{
                 $statusMsg = "Opplastningen feilet, vennligst prøv igjen";
@@ -38,4 +39,5 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
 
 // Vis status melding
 echo $statusMsg;
+echo '<br><a href="opplaering_admin.php">Tilbake</a>';
 ?>
