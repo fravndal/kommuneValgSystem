@@ -85,6 +85,7 @@ if (isset($_COOKIE['user_login'])) {
             <a href="#" class="w3-bar-item w3-button" onclick="closeRightMenu()">Bruker</a>
             <a href="#" class="w3-bar-item w3-button" onclick="closeRightMenu()">Informasjon</a>
             <a href="../change_pw/index.php" target="targetFrame" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-key" title="Endre passord" style="color: black;"> Endre passord</span></a>
+            <a href="../change_settings/change_user_settings.php" target="targetFrame" class="w3-bar-item w3-button" onclick="closeRightMenu()">Endre bruker</a>
             <a href="../include_login/logout.php" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-sign-out" title="Logg ut" style="color: black;"></span> Logg ut </a>
         </div>
 

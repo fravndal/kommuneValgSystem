@@ -12,11 +12,6 @@ body {
 
 }
 
-#left-dropdown {
-
-
-}
-
 #sidenav {
     display: none;
     position: absolute;
@@ -59,9 +54,6 @@ body {
     z-index: 1;
 
 }
-
-
-
 
 
 #frame {
