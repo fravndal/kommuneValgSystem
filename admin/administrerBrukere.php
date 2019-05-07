@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     $sekreter = (int)$_POST['secratary'];
     $vaktmester = (int)$_POST['janitor'];
 
-    //die(var_dump($bruker_id, $kretsnr, $navn, $telefon, $email,$fodselsaar, $leder, $nestleder , $sekreter, $vaktmester));
+//    die(var_dump($bruker_id));
 
     $dbAdmin->updateEmployee($bruker_id, $kretsnr, $navn, $telefon, $email, $fodselsaar, $leder, $nestleder, $sekreter, $vaktmester);
 
@@ -48,7 +48,7 @@ if (isset($_POST['submit'])) {
 
         #showPanel {
             background-color: lightblue;
-            height: 180px;
+            height: 200px;
         }
 
         #employeeForm {
@@ -75,6 +75,7 @@ if (isset($_POST['submit'])) {
             <table id="oversiktAnsatte" class="table table-striped table-bordered table-hover" style="width:100%">
                 <thead>
                 <tr>
+                    <th style="display: none;">uid</th>
                     <th>KretsNummer</th>
                     <th>Navn</th>
                     <th>Telefon</th>
@@ -89,6 +90,7 @@ if (isset($_POST['submit'])) {
                 <tbody>
                 <?php foreach ($resultAnsatt as $i => $value) { ?>
                     <tr>
+                        <td style="display: none;" onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['id']?></td>
                         <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['kretsNr']?></td>
                         <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['navn']?></td>
                         <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['telefon']?></td>
@@ -110,9 +112,9 @@ if (isset($_POST['submit'])) {
             <div id="showPanel" style="display: none;">
                 <form id="employeeForm" method="post" action="administrerBrukere.php">
 
-
-                    <input type="text" id="uid" name="uid"  placeholder="id" readonly style="display: none;">
-
+                    <div class="form-group">
+                        <input type="text" id="uid" name="uid"  placeholder="id" readonly style="display:none;">
+                    </div>
 
 
                     <div class="col-md-2 inputGroupContainer">
@@ -191,15 +193,16 @@ if (isset($_POST['submit'])) {
             rows[i].onclick = (function() {
                 document.getElementById("selectedUser").innerHTML = "Du har valgt ansatt: " +  this.cells[1].innerHTML;
                 var form = document.forms['employeeForm'];
-                form.elements[1].value = this.cells[0].innerHTML;
-                form.elements[2].value = this.cells[1].innerHTML;
-                form.elements[3].value = this.cells[2].innerHTML;
-                form.elements[4].value = this.cells[3].innerHTML;
-                form.elements[5].value = this.cells[4].innerHTML;
-                form.elements[6].value = this.cells[5].innerHTML;
-                form.elements[7].value = this.cells[6].innerHTML;
-                form.elements[8].value = this.cells[7].innerHTML;
-                form.elements[9].value = this.cells[8].innerHTML;
+                form.elements[0].value = this.cells[0].innerHTML;
+                form.elements[1].value = this.cells[1].innerHTML;
+                form.elements[2].value = this.cells[2].innerHTML;
+                form.elements[3].value = this.cells[3].innerHTML;
+                form.elements[4].value = this.cells[4].innerHTML;
+                form.elements[5].value = this.cells[5].innerHTML;
+                form.elements[6].value = this.cells[6].innerHTML;
+                form.elements[7].value = this.cells[7].innerHTML;
+                form.elements[8].value = this.cells[8].innerHTML;
+                form.elements[9].value = this.cells[9].innerHTML;
             })
         }
 
