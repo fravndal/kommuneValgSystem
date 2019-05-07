@@ -191,7 +191,7 @@ if (isset($_POST['submit'])) {
 
         for (var i = 1; i < rows.length; i++) {
             rows[i].onclick = (function() {
-                document.getElementById("selectedUser").innerHTML = "Du har valgt ansatt: " +  this.cells[1].innerHTML;
+                document.getElementById("selectedUser").innerHTML = "Du har valgt ansatt: " +  this.cells[2].innerHTML;
                 var form = document.forms['employeeForm'];
                 form.elements[0].value = this.cells[0].innerHTML;
                 form.elements[1].value = this.cells[1].innerHTML;
