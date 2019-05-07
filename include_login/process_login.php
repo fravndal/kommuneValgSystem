@@ -69,8 +69,8 @@ if (!empty($_POST['email'] and $_POST['p'])) {
             if($user_activated == 1) {
                 $user = $auth->getUserByID($user_id);
                 /*$user_id = preg_replace("/[^0-9]+/", "", $user,_id);*/
-                $getUsername = $auth->getNameByEmail($email);
-                $username = $getUsername[0]['navn'];
+                $getFullName = $auth->getNameByID($user_id);
+                $fullName = $getFullName[0]['navn'];
 
 
                 $current_time = time();
@@ -82,7 +82,7 @@ if (!empty($_POST['email'] and $_POST['p'])) {
 
                 setcookie("user_hash", $hash, 0, '/', $domain, FALSE, TRUE);
                 setcookie("user_login", $user_id, 0, '/', $domain, FALSE, TRUE);
-                setcookie("user_name", $username, 0, '/', $domain, FALSE, TRUE);
+                setcookie("user_name", $fullName, 0, '/', $domain, FALSE, TRUE);
                 // Set Auth Cookies if 'Husk meg' checked
                 if (! empty($_POST["remember"])) {
                     $cookie_expiration_time = $current_time + (30 * 24 * 60 * 60);  // for 1 month

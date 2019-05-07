@@ -81,12 +81,10 @@ if (isset($_COOKIE['user_login'])) {
 
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none; right:0;" id="rightMenu">
             <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Lukk &times;</button>
-            <p>Innlogget bruker: <br>  <?php echo $_COOKIE['user_name'];?></p>
-            <a href="#" class="w3-bar-item w3-button" onclick="closeRightMenu()">Bruker</a>
-            <a href="#" class="w3-bar-item w3-button" onclick="closeRightMenu()">Informasjon</a>
-            <a href="../change_pw/index.php" target="targetFrame" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-key" title="Endre passord" style="color: black;"> Endre passord</span></a>
-            <a href="../change_settings/change_user_settings.php" target="targetFrame" class="w3-bar-item w3-button" onclick="closeRightMenu()">Endre bruker</a>
-            <a href="../include_login/logout.php" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-sign-out" title="Logg ut" style="color: black;"></span> Logg ut </a>
+            <?php if(!empty($_COOKIE['user_name'])) {?><p>Innlogget bruker: <br>  <?php echo $_COOKIE['user_name']; ?></p><?php } ?>
+            <a href="../change_pw/index.php" target="targetFrame" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-key" style="color: black;"> Endre passord</span></a>
+            <a href="../change_settings/change_user_settings.php" target="targetFrame" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-user"></span>Endre bruker</a>
+            <a href="../include_login/logout.php" class="w3-bar-item w3-button" onclick="closeRightMenu()"><span class="fa fa-sign-out" style="color: black;"></span> Logg ut </a>
         </div>
 
 
@@ -103,8 +101,9 @@ if (isset($_COOKIE['user_login'])) {
             <a><i class="fa fa-calendar" aria-hidden="true"><i id="calendarText" style="display: none;">Kalender</i></i></a>
             <a><i class="fa fa-building-o" aria-hidden="true"><i id="worksheetText" style="display: none;">Min arbeidsplan</i></i></a>
             <a><i class="fa fa-commenting-o" aria-hidden="true"><i id="chatText" style="display: none;">Chat</i></i></a>
+            <a href="../educationMaterial/opplaering.php" target="targetFrame"><i class="fa fa-adjust" aria-hidden="true"><i id="educationText" style="display: none;">Opplæring</i></i></a>
             <?php if ($isAdmin == '1') {
-                echo '<a href="../admin/administrerBrukere.php" target="targetFrame"><i class="fa fa-wrench" aria-hidden="true"><i id="administratorText" style="display: none;">Administrering</i></i></a>';
+                echo '<a href="../admin/oversikt.php" target="targetFrame"><i class="fa fa-wrench" aria-hidden="true"><i id="administratorText" style="display: none;">Administrering</i></i></a>';
             } ?>
         </div>
     </div>
@@ -140,6 +139,7 @@ if (isset($_COOKIE['user_login'])) {
         document.getElementById("worksheetText").style.display = "inline";
         document.getElementById("chatText").style.display = "inline";
         document.getElementById("administratorText").style.display = "inline";
+        document.getElementById("educationText").style.display = "inline";
 
     }
 

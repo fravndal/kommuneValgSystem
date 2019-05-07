@@ -147,8 +147,12 @@
 
                 <div class="form-group">
                     <div class="col-md-6 inputGroupContainer" style="margin-top: 2em;">
+                        <a href="../" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="background-color: #FF0004;">Gå tilbake</a>
+                    </div>
+                    <div class="col-md-6 inputGroupContainer" style="margin-top: 2em;">
                         <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" onclick="return validateForm();">Send søknad</a>
                     </div>
+
                 </div>
             </div>
 

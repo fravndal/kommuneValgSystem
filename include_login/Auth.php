@@ -11,10 +11,10 @@ class Auth {
         return $result;
     }
 
-    function getNameByEmail($email) {
+    function getNameByID($user_id) {
         $pdo = new DBController();
-        $query = "SELECT bruker_info.navn FROM bruker_info JOIN brukere ON brukere.id = bruker_info.bruker_id WHERE brukere.epost = :email LIMIT 1";
-        $param_value_array = array(':email' => $email);
+        $query = "SELECT navn FROM ansatt WHERE bruker_id = :id LIMIT 1";
+        $param_value_array = array(':id' => $user_id);
         $result = $pdo->runQuery($query, $param_value_array);
         return $result;
     }
