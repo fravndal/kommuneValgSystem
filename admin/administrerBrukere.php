@@ -11,18 +11,23 @@ $resultAnsatt = $pdo->ansattOversikt();
 if (isset($_POST['submit'])) {
     $dbAdmin = new DBAdmin();
 
-    $bruker_id = $_COOKIE['user_login'];
-    $kretsnr = $_POST['krets'];
+    $bruker_id = (int)$_POST['uid'];
+    $kretsnr = (int)$_POST['krets'];
     $navn = $_POST['name'];
     $telefon = $_POST['phone'];
     $email = $_POST['email'];
-    $fodselsaar = $_POST['dateOfBirth'];
-    $leder = $_POST['leader'];
-    $nestleder = $_POST['sLeader'];
-    $sekreter = $_POST['secratary'];
-    $vaktmester = $_POST['janitor'];
+    $fodselsaar = (int)$_POST['dateOfBirth'];
+    $leder = (int)$_POST['leader'];
+    $nestleder = (int)$_POST['sLeader'];
+    $sekreter = (int)$_POST['secratary'];
+    $vaktmester = (int)$_POST['janitor'];
+
+    //die(var_dump($bruker_id, $kretsnr, $navn, $telefon, $email,$fodselsaar, $leder, $nestleder , $sekreter, $vaktmester));
 
     $dbAdmin->updateEmployee($bruker_id, $kretsnr, $navn, $telefon, $email, $fodselsaar, $leder, $nestleder, $sekreter, $vaktmester);
+
+    Header('Location:'.$_SERVER['PHP_SELF']);
+
 }
 
 
@@ -43,7 +48,7 @@ if (isset($_POST['submit'])) {
 
         #showPanel {
             background-color: lightblue;
-            height: 175px;
+            height: 180px;
         }
 
         #employeeForm {
@@ -54,11 +59,14 @@ if (isset($_POST['submit'])) {
             margin-top: 125px;
             margin-left: -82%;
         }
+
+        #userButton {
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
     <?php include 'menyAdmin.php'?>
-
     <div class="container">
 
         <div class="row">
@@ -102,7 +110,13 @@ if (isset($_POST['submit'])) {
             <div id="showPanel" style="display: none;">
                 <form id="employeeForm" method="post" action="administrerBrukere.php">
 
+
+                    <input type="text" id="uid" name="uid"  placeholder="id" readonly style="display: none;">
+
+
+
                     <div class="col-md-2 inputGroupContainer">
+
                         <div class="form-group">
                             <label for="krets">Kretsnr:</label>
                             <input type="text" id="krets" name="krets"  placeholder="Kretsnr">
@@ -158,7 +172,7 @@ if (isset($_POST['submit'])) {
                             <input type="text" name="janitor" placeholder="Vaktmester">
                         </div>
                     </div>
-                    <input class="btn btn-primary" id="updateEmployee" type="submit" name="submit" value="Endre">
+                    <input class="btn btn-primary" id="updateEmployee"  type="submit" name="submit" value="Endre">
                 </form>
 
             </div>
@@ -177,15 +191,15 @@ if (isset($_POST['submit'])) {
             rows[i].onclick = (function() {
                 document.getElementById("selectedUser").innerHTML = "Du har valgt ansatt: " +  this.cells[1].innerHTML;
                 var form = document.forms['employeeForm'];
-                form.elements[0].value = this.cells[0].innerHTML;
-                form.elements[1].value = this.cells[1].innerHTML;
-                form.elements[2].value = this.cells[2].innerHTML;
-                form.elements[3].value = this.cells[3].innerHTML;
-                form.elements[4].value = this.cells[4].innerHTML;
-                form.elements[5].value = this.cells[5].innerHTML;
-                form.elements[6].value = this.cells[6].innerHTML;
-                form.elements[7].value = this.cells[7].innerHTML;
-                form.elements[8].value = this.cells[8].innerHTML;
+                form.elements[1].value = this.cells[0].innerHTML;
+                form.elements[2].value = this.cells[1].innerHTML;
+                form.elements[3].value = this.cells[2].innerHTML;
+                form.elements[4].value = this.cells[3].innerHTML;
+                form.elements[5].value = this.cells[4].innerHTML;
+                form.elements[6].value = this.cells[5].innerHTML;
+                form.elements[7].value = this.cells[6].innerHTML;
+                form.elements[8].value = this.cells[7].innerHTML;
+                form.elements[9].value = this.cells[8].innerHTML;
             })
         }
 
@@ -206,7 +220,6 @@ if (isset($_POST['submit'])) {
             x.style.display = "block";
         }
     }
-
 
 
 </script>
