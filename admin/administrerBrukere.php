@@ -76,30 +76,36 @@ if (isset($_POST['submit'])) {
                 <thead>
                 <tr>
                     <th style="display: none;">uid</th>
-                    <th>KretsNummer</th>
                     <th>Navn</th>
+                    <th>Født</th>
+                    <th>Adresse</th>
+                    <th>By</th>
+                    <th>Postkode</th>
+                    <th>E-mail</th>
                     <th>Telefon</th>
-                    <th>email</th>
-                    <th>Fødselsår</th>
-                    <th>leder</th>
-                    <th>nestleder</th>
-                    <th>sekretær</th>
-                    <th>vaktmester</th>
+                    <th>KretsNr</th>
+                    <th>Rolle</th>
+                    <th>Bil</th>
+                    <th>Norskferd</th>
+                    <th>Dataferd</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach ($resultAnsatt as $i => $value) { ?>
                     <tr>
-                        <td style="display: none;" onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['id']?></td>
-                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['kretsNr']?></td>
+                        <td style="display: none;" onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['bruker_id']?></td>
                         <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['navn']?></td>
-                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['telefon']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['fodselnr']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['adresse']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['city']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['postkode']?></td>
                         <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['email']?></td>
-                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['fodselsaar']?></td>
-                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['leder']?></td>
-                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['nestLeder']?></td>
-                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['sekreter']?></td>
-                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['vaktmester']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['telefon']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['kretsNr']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['rolle']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['bil']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['norskferd']?></td>
+                        <td onclick="ansatt(); showButton();"><?php echo $resultAnsatt[$i]['dataferd']?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -120,60 +126,88 @@ if (isset($_POST['submit'])) {
                     <div class="col-md-2 inputGroupContainer">
 
                         <div class="form-group">
-                            <label for="krets">Kretsnr:</label>
-                            <input type="text" id="krets" name="krets"  placeholder="Kretsnr">
-                        </div>
-
-
-                        <div class="form-group">
                             <label for="name">Navn:</label>
                             <input type="text" name="name"  placeholder="Navn">
                         </div>
+
+                        <div class="form-group">
+                            <label for="fodselnr">Fødselsnr:</label>
+                            <input type="text" id="fodselnr" name="fodselnr"  placeholder="Fødselsnr">
+                        </div>
+
                     </div>
 
 
                     <div class="col-md-2 inputGroupContainer">
+
                         <div class="form-group">
-                            <label for="phone">Telefon:</label>
-                            <input type="text" name="phone"  placeholder="Telefon">
+                            <label for="adresse">Adresse:</label>
+                            <input type="text" name="adresse"  placeholder="Adresse">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">By:</label>
+                            <input type="text" name="city"  placeholder="By">
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-2 inputGroupContainer">
+
+                        <div class="form-group">
+                            <label for="postkode">Postkode:</label>
+                            <input type="text" name="postkode"  placeholder="postkode">
                         </div>
 
                         <div class="form-group">
                             <label for="email">E-mail:</label>
-                            <input type="text" name="email"  placeholder="E-mail">
+                            <input type="text" name="email" placeholder="e-mail">
                         </div>
+
                     </div>
 
                     <div class="col-md-2 inputGroupContainer">
+
                         <div class="form-group">
-                            <label for="dateOfBirth">Fødselsår:</label>
-                            <input type="text" name="dateOfBirth"  placeholder="Fødselsår">
+                            <label for="telefon">Telefon:</label>
+                            <input type="text" name="telefon" placeholder="Telefon">
                         </div>
 
                         <div class="form-group">
-                            <label for="leader">Leder:</label>
-                            <input type="text" name="leader" placeholder="Leder">
+                            <label for="krets">KretsNr:</label>
+                            <input type="text" name="krets" placeholder="Krets">
                         </div>
+
                     </div>
 
                     <div class="col-md-2 inputGroupContainer">
+
                         <div class="form-group">
-                            <label for="sLeader">Nestleder:</label>
-                            <input type="text" name="sLeader" placeholder="Nestleder">
+                            <label for="rolle">Rolle:</label>
+                            <input type="text" name="rolle" placeholder="Rolle">
                         </div>
 
                         <div class="form-group">
-                            <label for="secratary">Sekretær:</label>
-                            <input type="text" name="secratary" placeholder="Sekretær">
+                            <label for="bil">Bil:</label>
+                            <input type="text" name="bil" placeholder="Bil">
                         </div>
+
                     </div>
 
                     <div class="col-md-2 inputGroupContainer">
+
                         <div class="form-group">
-                            <label for="janitor">Vaktmester:</label>
-                            <input type="text" name="janitor" placeholder="Vaktmester">
+                            <label for="norsk">Norskferdigheter:</label>
+                            <input type="text" name="norsk" placeholder="Norskferd">
                         </div>
+
+                        <div class="form-group">
+                            <label for="data">Dataferdigheter:</label>
+                            <input type="text" name="data" placeholder="Dataferd">
+                        </div>
+
                     </div>
+
                     <input class="btn btn-primary" id="updateEmployee"  type="submit" name="submit" value="Endre">
                 </form>
 
@@ -191,7 +225,7 @@ if (isset($_POST['submit'])) {
 
         for (var i = 1; i < rows.length; i++) {
             rows[i].onclick = (function() {
-                document.getElementById("selectedUser").innerHTML = "Du har valgt ansatt: " +  this.cells[2].innerHTML;
+                document.getElementById("selectedUser").innerHTML = "Du har valgt ansatt: " +  this.cells[1].innerHTML;
                 var form = document.forms['employeeForm'];
                 form.elements[0].value = this.cells[0].innerHTML;
                 form.elements[1].value = this.cells[1].innerHTML;
@@ -203,6 +237,9 @@ if (isset($_POST['submit'])) {
                 form.elements[7].value = this.cells[7].innerHTML;
                 form.elements[8].value = this.cells[8].innerHTML;
                 form.elements[9].value = this.cells[9].innerHTML;
+                form.elements[10].value = this.cells[10].innerHTML;
+                form.elements[11].value = this.cells[11].innerHTML;
+                form.elements[12].value = this.cells[12].innerHTML;
             })
         }
 
