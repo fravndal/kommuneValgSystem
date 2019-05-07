@@ -12,19 +12,23 @@ if (isset($_POST['submit'])) {
     $dbAdmin = new DBAdmin();
 
     $bruker_id = (int)$_POST['uid'];
-    $kretsnr = (int)$_POST['krets'];
     $navn = $_POST['name'];
-    $telefon = $_POST['phone'];
+    $fodselnr = $_POST['fodselnr'];
+    $adresse = $_POST['adresse'];
+    $city = $_POST['city'];
+    $postkode = $_POST['postkode'];
     $email = $_POST['email'];
-    $fodselsaar = (int)$_POST['dateOfBirth'];
-    $leder = (int)$_POST['leader'];
-    $nestleder = (int)$_POST['sLeader'];
-    $sekreter = (int)$_POST['secratary'];
-    $vaktmester = (int)$_POST['janitor'];
+    $telefon = $_POST['telefon'];
+    $kretsnr = (int)$_POST['krets'];
+    $rolle = $_POST['rolle'];
+    $bil = $_POST['bil'];
+    $norskferd = $_POST['norsk'];
+    $dataferd = $_POST['data'];
+
 
 //    die(var_dump($bruker_id));
 
-    $dbAdmin->updateEmployee($bruker_id, $kretsnr, $navn, $telefon, $email, $fodselsaar, $leder, $nestleder, $sekreter, $vaktmester);
+    $dbAdmin->updateEmployee($bruker_id, $navn, $fodselnr, $adresse, $city, $postkode, $email, $telefon, $kretsnr, $rolle, $bil, $norskferd, $dataferd);
 
     Header('Location:'.$_SERVER['PHP_SELF']);
 
