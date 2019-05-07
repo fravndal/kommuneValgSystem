@@ -108,7 +108,7 @@ if ($isLoggedIn) {
                     <div class="form-group" id="remember-form">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="remember" class="custom-control-input" id="customControlInline">
-                            <label class="custom-control-label" for="customControlInline">Husk meg</label>
+                            <label class="custom-control-label" for="customControlInline">Forbli innlogget</label>
                         </div>
                     </div>
                     <?php if($util->captchaCheck($pdo) == true) { ?>

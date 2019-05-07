@@ -17,6 +17,19 @@
 </head>
 <body>
 
+<?php
+if(isset($_COOKIE['message'])) {
+    ?>
+    <div class="alert alert-warning" role="alert">
+        <?php
+        echo $_COOKIE['message'];
+        ?>
+    </div>
+    <?php
+
+}
+?>
+
 <div id="maincontent" class="col-sm-8 text-left">
     <iframe srcdoc="<!DOCTYPE html>
             <h1>Nyhetsfeed</h1>

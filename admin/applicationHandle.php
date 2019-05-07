@@ -64,38 +64,40 @@ if(isset($_COOKIE['message'])) {
 <!-- Main content here -->
 <?php include 'menyAdmin.php'?>
 <table id="application" class="table table-striped table-bordered" style="width:100%">
-    <thead>
-    <tr>
-        <th>Navn</th>
-        <th>Personnummer</th>
-        <th>Adresse</th>
-        <th>By</th>
-        <th>Postkode</th>
-        <th>Telefon</th>
-        <th>Epost</th>
-        <th>Bil</th>
-        <th>Norskferdigheter</th>
-        <th>Dataferdigheter</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <?php foreach ($result as $i => $value) { ?>
+    <?php if(!empty($result)) { ?>
+        <thead>
+        <tr>
+            <th>Navn</th>
+            <th>Personnummer</th>
+            <th>Adresse</th>
+            <th>By</th>
+            <th>Postkode</th>
+            <th>Telefon</th>
+            <th>Epost</th>
+            <th>Bil</th>
+            <th>Norskferdigheter</th>
+            <th>Dataferdigheter</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <?php if(!empty($result)) { foreach ($result as $i => $value) { ?>
 
 
-    <tr>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="name" ><?php echo $result[$i]['navn'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="birthnumber"><?php echo $result[$i]['fodselnr'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="address"><?php echo $result[$i]['adresse'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="city"><?php echo $result[$i]['city'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="zipcode"><?php echo $result[$i]['postkode'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="mobilenumber"><?php echo $result[$i]['telefon'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="email"><?php echo $result[$i]['email'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="car"><?php echo $result[$i]['bil'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="norwegianknowlegde"><?php echo $result[$i]['norskferd'] ?></td>
-        <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="dataknowledge"><?php echo $result[$i]['dataferd'] ?></td>
-    </tr>
-    <?php } ?>
-    </tfoot>
+        <tr>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="name" ><?php echo $result[$i]['navn'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="birthnumber"><?php echo $result[$i]['fodselnr'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="address"><?php echo $result[$i]['adresse'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="city"><?php echo $result[$i]['city'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="zipcode"><?php echo $result[$i]['postkode'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="mobilenumber"><?php echo $result[$i]['telefon'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="email"><?php echo $result[$i]['email'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="car"><?php echo $result[$i]['bil'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="norwegianknowlegde"><?php echo $result[$i]['norskferd'] ?></td>
+            <td onclick="overlay()" data-toggle="modal" data-target="#myModal" id="dataknowledge"><?php echo $result[$i]['dataferd'] ?></td>
+        </tr>
+        <?php }}  ?>
+        </tfoot>
+    <?php } else echo 'Ingen søknader ligger inne' ?>
 </table>
 
 
@@ -123,6 +125,8 @@ if(isset($_COOKIE['message'])) {
                     <label for="inp-8" class="form-control-plaintext text-right">Bil og førekort:</label>
                     <label for="inp-9" class="form-control-plaintext text-right">Norskferdigheter:</label>
                     <label for="inp-10" class="form-control-plaintext text-right">Dataferdigheter:</label>
+                    <label for="inp-11" class="form-control-plaintext text-right">Kretssted:</label>
+                    <label for="inp-12" class="form-control-plaintext text-right">Rolle:</label>
                     </div>
                     <div class="col-sm-6">
                     <input type="text" name="inp-1" id="inp-1"  class="form-control-plaintext" readonly>
@@ -135,6 +139,27 @@ if(isset($_COOKIE['message'])) {
                     <input type="text" name="inp-8" id="inp-8" class="form-control-plaintext" readonly>
                     <input type="text" name="inp-9" id="inp-9" class="form-control-plaintext" readonly>
                     <input type="text" name="inp-10" id="inp-10" class="form-control-plaintext" readonly>
+
+                        <select class="selectpicker form-control" id="inp-11" name ="inp-11">
+                            <?php
+                            $app = new Application();
+                            $kretsList = $app->getAllKretsNr();
+                            for ($i = 0; $i<count($kretsList); $i++) {
+
+                                echo '<option value="'.$kretsList[$i]['kretsNr'].'">' . $kretsList[$i]['sted'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <select class="selectpicker form-control" id="inp-12" name ="inp-12">
+                            <?php
+                            $app = new Application();
+                            $list = $app->getAllRoles();
+                            for ($i = 0; $i<count($list); $i++) {
+
+                                echo '<option value="'.$list[$i]['rolle'].'">' . $list[$i]['rolle'] . '</option>';
+                            }
+                            ?>
+                          </select>
                     </div>
 
 

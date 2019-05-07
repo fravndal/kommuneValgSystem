@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+<?php include '../admin/menyAdmin.php'?>
 <form action="upload.php" method="post" enctype="multipart/form-data">
     Velg fil for opplastning:
     <input type="file" name="file" id="file">
