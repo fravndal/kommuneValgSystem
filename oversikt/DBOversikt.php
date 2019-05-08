@@ -18,4 +18,12 @@ class DBOversikt {
 
         return $ansatt;
     }
+
+    function stemmestyreOversikt() {
+        $pdo = new DBController();
+        $query = "SELECT * FROM stemmestyre";
+        $stemmestyre = $pdo->runBaseQuery($query);
+
+        return $stemmestyre;
+    }
 }

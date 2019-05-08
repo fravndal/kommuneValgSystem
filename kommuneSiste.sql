@@ -57,7 +57,11 @@ CREATE TABLE `ansatt` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- --------------------------------------------------------
+INSERT INTO ansatt(bruker_id,navn,fodselnr,adresse,city,postkode,email,telefon,kretsNr,rolle,bil,norskferd,dataferd)
+VALUES(1,'Fredrik Ravndal','10548750487', 'hofsfossveien','hønefoss','3517','fredrik.ravndal@gmail.com','98854784',1,'Leder','Ja','5','5');
 
+INSERT INTO ansatt(bruker_id,navn,fodselnr,adresse,city,postkode,email,telefon,kretsNr,rolle,bil,norskferd,dataferd)
+VALUES(2,'Fredrik Hulaas','10548750123', 'hofsfossveien 1','hønefoss','3517','fredrik.hulaas@gmail.com','98854123',2,'Leder','Ja','5','5');
 --
 -- Tabellstruktur for tabell `brukere`
 --
@@ -244,6 +248,9 @@ CREATE TABLE `stemmestyre` (
   `email` char(100) COLLATE utf8mb4_bin DEFAULT NULL,
   `fodselnr` varchar(11) COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- INSERT INTO stemmestyre(bruker_id, kretsNr, rolle, navn, telefon,email,fodselnr) VALUES(2, 1, 'Leder', 'Fredrik Hulaas', "60.17682, 10.27151");
+
 
 --
 -- Indexes for dumped tables

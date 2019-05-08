@@ -25,4 +25,24 @@ class DBAdmin {
 
 
     }
+
+    function insertEmployeeKrets($bruker_id,$kretsnr,$rolle) {
+        $pdo = new DBController();
+
+        try {
+
+            $query = "INSERT INTO stemmestyre(bruker_id, kretsNr, rolle, navn, telefon, email, fodselnr) SELECT :bruker_id, :kretsnr, :rolle, ansatt.navn,ansatt.telefon,ansatt.email,ansatt.fodselnr FROM ansatt
+                      WHERE bruker_id = :bruker_id";
+
+            $param_value_array = array(':bruker_id' => $bruker_id, ':kretsnr' => $kretsnr,':rolle' => $rolle);
+
+            $pdo->insert($query, $param_value_array);
+
+            return true;
+
+        } catch(PDOException $exception) {
+            return false;
+        }
+
+    }
 }

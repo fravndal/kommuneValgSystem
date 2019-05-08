@@ -22,6 +22,13 @@ class Application {
         return $result;
     }
 
+    function getAllEmployees() {
+        $pdo = new DBController();
+        $query = "SELECT * FROM ansatt";
+        $result = $pdo->runBaseQuery($query);
+        return $result;
+    }
+
 
 
     function insertUserToUsersTable($email, $password, $salt, $admin, $aktivert){
