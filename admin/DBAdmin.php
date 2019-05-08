@@ -45,4 +45,44 @@ class DBAdmin {
         }
 
     }
+
+    function updateStemmested($kretsnr, $sted, $stemmeber) {
+        $pdo = new DBController();
+        try {
+            $query = "UPDATE stemmesteder SET sted = :sted, stemmeBer = :stemmeBer WHERE kretsNr = :kretsnr";
+            $param_value_array = array(':sted' => $sted, ':stemmeBer' => $stemmeber, ':kretsnr' => $kretsnr);
+            $pdo->update($query, $param_value_array);
+
+            return true;
+        } catch(PDOException $exception) {
+            return false;
+        }
+    }
+
+    function delStemmested($kretsnr) {
+        $pdo = new DBController();
+        try {
+            $query = "DELETE FROM stemmesteder WHERE kretsNr = :kretsnr";
+            $param_value_array = array(':kretsnr' => $kretsnr);
+            $pdo->update($query, $param_value_array);
+
+            return true;
+        } catch(PDOException $exception) {
+            return false;
+        }
+    }
+
+    function addStemmested($kretsnr, $sted, $stemmeber) {
+        $pdo = new DBController();
+        try {
+            $query = "INSERT INTO stemmesteder(kretsNr, sted, stemmeber)
+            VALUES(:kretsnr, :sted, :stemmeBer)";
+            $param_value_array = array(':sted' => $sted, ':stemmeBer' => $stemmeber, ':kretsnr' => $kretsnr);
+            $pdo->insert($query, $param_value_array);
+
+            return true;
+        } catch(PDOException $exception) {
+            return false;
+        }
+    }
 }

@@ -29,6 +29,13 @@ class Application {
         return $result;
     }
 
+    function getAllStemmesteder() {
+        $pdo = new DBController();
+        $query = "SELECT * FROM stemmesteder";
+        $result = $pdo->runBaseQuery($query);
+        return $result;
+    }
+
 
 
     function insertUserToUsersTable($email, $password, $salt, $admin, $aktivert){
