@@ -1,5 +1,13 @@
 <?php
 
+session_start();
+
+require_once "../include_login/authCookieSessionValidate.php";
+
+if(!$isLoggedIn) {
+    header("Location: ../");
+}
+
 require_once '../Oversikt/DBOversikt.php';
 require_once 'DBAdmin.php';
 
@@ -51,7 +59,7 @@ if (isset($_POST['submit'])) {
         }
 
         #showPanel {
-            background-color: lightblue;
+            background-color: lightgrey;
             height: 200px;
         }
 
@@ -115,7 +123,7 @@ if (isset($_POST['submit'])) {
                 </tbody>
             </table>
 
-            <div id="selectedUser" style="background-color: lightgrey;">
+            <div id="selectedUser">
             </div>
 
             <button onclick="panel()" id="userButton" type="button" style="display: none;">Administrer Bruker</button>

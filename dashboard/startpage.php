@@ -42,7 +42,6 @@ if(isset($_COOKIE['message'])) {
                 <h1>Meldinger</h1>
                 <p>Her kan man skrive medlinger som skal ut til alle</p>
             "></iframe>
-    <a href="../admin/addStemmested.php">Stemmested</a>
 </div>
 
 

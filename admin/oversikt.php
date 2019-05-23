@@ -1,4 +1,13 @@
 <?php
+
+session_start();
+
+require_once "../include_login/authCookieSessionValidate.php";
+
+if(!$isLoggedIn) {
+    header("Location: ../");
+}
+
 require_once 'DBOversikt.php';
 $pdo = new DBOversikt();
 
@@ -36,14 +45,6 @@ $resultAnsatt = $pdo->ansattOversikt();
             background-color: #8CCCF1;
         }
 
-        #modalContent {
-            font-size: 18px;
-        }
-
-        .modal-title {
-            font-size: 20px;
-        }
-
         #tableOverskrift {
             padding 5px;
             font-size: 25px;
@@ -53,29 +54,6 @@ $resultAnsatt = $pdo->ansattOversikt();
 <body>
     <div class="container">
         <?php include 'menyAdmin.php'?>
-
-        <div class="row">
-            <!-- Modal -->
-            <div class="modal fade" id="modal" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Oversikt</h4>
-                        </div>
-                        <div class="modal-body">
-                            <span id="modalContent"></span>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default">Administrer</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
 
             <h1 id="tableOverskrift">Oversikt over stemmesteder</h1>
             <table id="oversiktStemmested" class="table table-striped table-bordered table-hover" style="width:100%">
@@ -89,77 +67,20 @@ $resultAnsatt = $pdo->ansattOversikt();
                 <tbody>
                     <?php foreach ($result as $i => $value) { ?>
                     <tr>
-                        <td data-toggle="modal" data-target="#modal" onclick="krets();"><?php echo $result[$i]['kretsNr']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="krets();"><?php echo $result[$i]['sted']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="krets();"><?php echo $result[$i]['stemmeBer']?></td>
+                        <td ><?php echo $result[$i]['kretsNr']?></td>
+                        <td ><?php echo $result[$i]['sted']?></td>
+                        <td ><?php echo $result[$i]['stemmeBer']?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
-
-            <h1 id="tableOverskrift">Oversikt over ansatte</h1>
-            <table id="oversiktAnsatte" class="table table-striped table-bordered table-hover" style="width:100%">
-                <thead>
-                <tr>
-                    <th>KretsNummer</th>
-                    <th>Navn</th>
-                    <th>Telefon</th>
-                    <th>email</th>
-                    <th>Fødselsår</th>
-                    <th>leder</th>
-                    <th>nestleder</th>
-                    <th>sekretær</th>
-                    <th>vaktmester</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($resultAnsatt as $i => $value) { ?>
-                    <tr>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['kretsNr']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['navn']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['telefon']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['email']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['fodselsaar']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['leder']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['nestLeder']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['sekreter']?></td>
-                        <td data-toggle="modal" data-target="#modal" onclick="ansatt()"><?php echo $resultAnsatt[$i]['vaktmester']?></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
-
 
         </div>
     </div>
 
 </body>
 <script type="text/javascript">
-    function krets() {
-        const table = document.getElementById("oversiktStemmested");
-        const rows = table.rows;
 
-        for (let i = 1; i < rows.length; i++) {
-            rows[i].onclick = (function() {
-                const krets = this.cells[0].innerHTML;
-                const sted = this.cells[1].innerHTML;
-                document.getElementById('modalContent').innerHTML = "Du har valgt krets: " + krets + " " + "Sted: " + sted;
-            });
-        }
-    }
-
-    function ansatt() {
-        const table = document.getElementById("oversiktAnsatte");
-        const rows = table.rows;
-
-        for (let i = 1; i < rows.length; i++) {
-            rows[i].onclick = (function() {
-                const navn = this.cells[1].innerHTML;
-                document.getElementById('modalContent').innerHTML = "Du har valgt Ansatt: " + navn + " " ;
-
-            })
-        }
-    }
 
 </script>
 </html>

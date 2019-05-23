@@ -101,6 +101,7 @@ if (isset($_COOKIE['user_login'])) {
             <a><i class="fa fa-calendar" aria-hidden="true"><i id="calendarText" style="display: none;">Kalender</i></i></a>
             <a><i class="fa fa-building-o" aria-hidden="true"><i id="worksheetText" style="display: none;">Min arbeidsplan</i></i></a>
             <a><i class="fa fa-commenting-o" aria-hidden="true"><i id="chatText" style="display: none;">Chat</i></i></a>
+            <a href="/oversikt/oversiktStemmested.php" target="targetFrame"><i class="fa fa-commenting-o" aria-hidden="true"><i id="stedText" style="display: none;">Stemmesteder</i></i></a>
             <a href="../educationMaterial/opplaering.php" target="targetFrame"><i class="fa fa-adjust" aria-hidden="true"><i id="educationText" style="display: none;">Opplæring</i></i></a>
             <?php if ($isAdmin == '1') {
                 echo '<a href="../admin/oversikt.php" target="targetFrame"><i class="fa fa-wrench" aria-hidden="true"><i id="administratorText" style="display: none;">Administrering</i></i></a>';

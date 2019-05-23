@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+require_once "../include_login/authCookieSessionValidate.php";
+
+if(!$isLoggedIn) {
+    header("Location: ../");
+}
 // legge til log-in sjekk på administrerbruker
 //Rullgardin med alle ansatte
 //når valgt ansatt, velg hvilken krets og hvordan rolle ansatt skal ha.

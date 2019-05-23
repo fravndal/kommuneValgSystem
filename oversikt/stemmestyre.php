@@ -37,14 +37,6 @@ var_dump($result)
             background-color: #8CCCF1;
         }
 
-        #modalContent {
-            font-size: 18px;
-        }
-
-        .modal-title {
-            font-size: 20px;
-        }
-
         #tableOverskrift {
             padding 5px;
             font-size: 25px;

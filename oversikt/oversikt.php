@@ -102,13 +102,13 @@ $resultAnsatt = $pdo->ansattOversikt();
                 <tr>
                     <th>KretsNummer</th>
                     <th>Navn</th>
-                    <th>Telefon</th>
-                    <th>email</th>
-                    <th>Fødselsår</th>
-                    <th>leder</th>
-                    <th>nestleder</th>
-                    <th>sekretær</th>
-                    <th>vaktmester</th>
+<!--                    <th>Telefon</th>-->
+<!--                    <th>email</th>-->
+<!--                    <th>Fødselsår</th>-->
+<!--                    <th>leder</th>-->
+<!--                    <th>nestleder</th>-->
+<!--                    <th>sekretær</th>-->
+<!--                    <th>vaktmester</th>-->
                 </tr>
                 </thead>
                 <tbody>

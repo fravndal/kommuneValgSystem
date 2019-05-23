@@ -38,6 +38,7 @@ class Application {
 
 
 
+
     function insertUserToUsersTable($email, $password, $salt, $admin, $aktivert){
         $pdo = new DBController();
         $query = "INSERT INTO brukere(epost, passord, salt, admin, aktivert) 

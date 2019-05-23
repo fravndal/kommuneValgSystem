@@ -85,4 +85,13 @@ class DBAdmin {
             return false;
         }
     }
+
+    function getStaffStemmested($kretsnr) {
+        $pdo = new DBController();
+        $query = "SELECT * FROM stemmestyre WHERE kretsNr = :kretsnr";
+        $param_value_array = array(':kretsnr' => $kretsnr);
+        $result = $pdo->runQuery($query, $param_value_array);
+        return $result;
+    }
+
 }

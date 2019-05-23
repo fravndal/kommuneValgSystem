@@ -6,5 +6,5 @@
     <a href="../educationMaterial/opplaering_admin.php" target="targetFrame"><button type="button" class="btn btn-primary">Last opp opplæringsmateriale</button></a>
     <a href="applicationHandle.php" target="targetFrame"><button type="button" class="btn btn-primary">Håndter søknad</button></a>
     <a href="../oversikt/endreStemmestyre.php" target="targetFrame"><button type="button" class="btn btn-primary">Endre stemmestyre</button></a>
-    <button type="button" class="btn btn-primary">Func5</button>
+    <a href="admStemmested.php" target="targetFrame"><button type="button" class="btn btn-primary">Rediger stemmested</button></a>
 </div>
