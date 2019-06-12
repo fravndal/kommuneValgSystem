@@ -84,8 +84,9 @@ if (isset($_POST['submit-change'])) {
             width: 100%;
         }
 
-        #tableOverskrift {
-            font-size: 24px;
+        .content {
+            margin-right: auto;
+            margin-left: auto;
         }
     </style>
 </head>
@@ -129,8 +130,8 @@ if (isset($_POST['submit-change'])) {
 
                 <div class="form-group">
                     <div class="col-md-7 inputGroupContainer" style="margin-top: 2em;">
-                        <input type="submit" name="submit" class="btn btn-primary btn-lg active" value="Legg til" onclick="submitForm();">
-                        <input type="submit" name="submit-change" class="btn btn-primary btn-lg active" value="Endre stemmested" onclick="editStemmested();">
+                        <input type="submit" name="submit" class="btn btn-primary btn-sm active" value="Legg til" onclick="submitForm();">
+                        <input type="submit" name="submit-change" class="btn btn-primary btn-sm active" value="Endre stemmested" onclick="editStemmested();">
                     </div>
                 </div>
             </form>
@@ -149,7 +150,7 @@ if (isset($_POST['submit-change'])) {
                     }
                     ?>
                 </select>
-                <input type="submit" name="submit-del" class="btn btn-primary btn-lg active" value="Slett" onclick="deleteStemmested();">
+                <input type="submit" name="submit-del" class="btn btn-primary btn-sm active" value="Slett" onclick="deleteStemmested();">
             </div>
             </form>
         </div>
