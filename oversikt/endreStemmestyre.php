@@ -119,7 +119,8 @@ if (isset($_POST['submit'])) {
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($resultStemmestyre as $i => $value) { ?>
+        <?php if($resultStemmestyre != ''){
+            foreach ($resultStemmestyre as $i => $value) { ?>
             <tr>
                 <td><?php echo $resultStemmestyre[$i]['kretsNr']?></td>
                 <td><?php echo $resultStemmestyre[$i]['rolle']?></td>
@@ -128,7 +129,8 @@ if (isset($_POST['submit'])) {
                 <td><?php echo $resultStemmestyre[$i]['email']?></td>
                 <td><?php echo $resultStemmestyre[$i]['fodselnr']?></td>
             </tr>
-        <?php } ?>
+        <?php }}else{
+            print "Ingen ansatte er tildelt stemmestyre";}?>
         </tbody>
     </table>
 </div>
