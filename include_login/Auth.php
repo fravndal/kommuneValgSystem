@@ -11,6 +11,14 @@ class Auth {
         return $result;
     }
 
+    function getNameByID($user_id) {
+        $pdo = new DBController();
+        $query = "SELECT navn FROM ansatt WHERE bruker_id = :id LIMIT 1";
+        $param_value_array = array(':id' => $user_id);
+        $result = $pdo->runQuery($query, $param_value_array);
+        return $result;
+    }
+
     function getUserByID($id) {
         $pdo = new DBController();
         $query = "SELECT id, epost FROM brukere WHERE id = :id LIMIT 1";
@@ -41,6 +49,14 @@ class Auth {
         $param_value_array = array(':user_id' => $user_id, ':is_expired' => $is_expired);
 	    $result = $pdo->runQuery($query, $param_value_array);
 	    return $result;
+    }
+
+    function getAdminByID($user_id) {
+        $pdo = new DBController();
+        $query = "SELECT admin FROM brukere WHERE id = :user_id";
+        $param_value_array = array(':user_id' => $user_id);
+        $result = $pdo->runQuery($query, $param_value_array);
+        return $result;
     }
     
     /*function markAsExpired($user_id) {

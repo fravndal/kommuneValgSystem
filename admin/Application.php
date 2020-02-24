@@ -8,18 +8,49 @@ class Application {
         return $result;
     }
 
-    function insertUserToUsersTable($email, $password, $salt, $role, $admin, $aktivert){
+    function getAllKretsNr() {
         $pdo = new DBController();
-        $query = "INSERT INTO brukere(epost, passord, salt, rolle, admin, aktivert) 
-                  VALUES (:email, :password, :salt, :role, :admin, :activated)";
-        $param_value_array = array(':email' => $email, ':password' => $password, ':salt' => $salt, ':role' => $role, ':admin' => $admin, ':activated' => $aktivert);
+        $query = "SELECT * FROM stemmesteder";
+        $result = $pdo->runBaseQuery($query);
+        return $result;
+    }
+
+    function getAllRoles() {
+        $pdo = new DBController();
+        $query = "SELECT * FROM rolle";
+        $result = $pdo->runBaseQuery($query);
+        return $result;
+    }
+
+    function getAllEmployees() {
+        $pdo = new DBController();
+        $query = "SELECT * FROM ansatt";
+        $result = $pdo->runBaseQuery($query);
+        return $result;
+    }
+
+    function getAllStemmesteder() {
+        $pdo = new DBController();
+        $query = "SELECT * FROM stemmesteder";
+        $result = $pdo->runBaseQuery($query);
+        return $result;
+    }
+
+
+
+
+    function insertUserToUsersTable($email, $password, $salt, $admin, $aktivert){
+        $pdo = new DBController();
+        $query = "INSERT INTO brukere(epost, passord, salt, admin, aktivert) 
+                  VALUES (:email, :password, :salt, :admin, :activated)";
+        $param_value_array = array(':email' => $email, ':password' => $password, ':salt' => $salt, ':admin' => $admin, ':activated' => $aktivert);
         $pdo->insert($query, $param_value_array);
     }
 
-    function insertUserToUserInfo($user_id, $name,$socialSecurity,$address,$city,$zipcode,$mobileNumber,$car,$norwegianKnowledge,$dataKnowledge) {
+    function insertUserToUserInfo($user_id, $name,$socialSecurity,$address,$city,$zipcode,$mobileNumber,$car,$norwegianKnowledge,$dataKnowledge, $email, $kretsNr, $role) {
         $pdo = new DBController();
-        $query = "INSERT INTO bruker_info(bruker_id, navn, fodselnr, adresse, city, postkode, telefon, bil, norskferd, dataferd) 
-                  VALUES (:user_id, :fullname, :socialSecurity, :address, :city, :zipcode, :mobileNumber, :car, :norwegianKnowledge, :dataKnowledge)";
+        $query = "INSERT INTO ansatt(bruker_id, navn, fodselnr, adresse, city, postkode, email, telefon, kretsNr, rolle, bil, norskferd, dataferd) 
+                  VALUES (:user_id, :fullname, :socialSecurity, :address, :city, :zipcode, :email, :mobileNumber, :kretsNr, :role, :car, :norwegianKnowledge, :dataKnowledge)";
         $param_value_array = array(':user_id' => $user_id,
                                     ':fullname' => $name ,
                                     ':socialSecurity' => $socialSecurity,
@@ -29,7 +60,10 @@ class Application {
                                     ':mobileNumber' => $mobileNumber,
                                     ':car' => $car,
                                     ':norwegianKnowledge' => $norwegianKnowledge,
-                                    ':dataKnowledge' => $dataKnowledge);
+                                    ':dataKnowledge' => $dataKnowledge,
+                                    ':email' => $email,
+                                    ':kretsNr' => $kretsNr,
+                                    ':role' => $role);
         $pdo->insert($query, $param_value_array);
     }
 

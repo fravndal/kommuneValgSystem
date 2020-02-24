@@ -50,6 +50,8 @@ if (!empty($_POST['email'] and $_POST['p'])) {
 
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = $_POST['p']; // The hashed password.
+    $domain = $_SERVER['HTTP_HOST'];
+    setcookie("set_email", $email, 0, '/', $domain,FALSE,TRUE);
 
 
     if($isCaptchaSet == true and $isSet == true or $isSet == false) {
@@ -67,9 +69,12 @@ if (!empty($_POST['email'] and $_POST['p'])) {
             if($user_activated == 1) {
                 $user = $auth->getUserByID($user_id);
                 /*$user_id = preg_replace("/[^0-9]+/", "", $user,_id);*/
+                $getFullName = $auth->getNameByID($user_id);
+                $fullName = $getFullName[0]['navn'];
+
 
                 $current_time = time();
-                $domain = $_SERVER['HTTP_HOST'];
+
 
                 $hash = hash('sha512',$email . $current_time . $user_id . $domain);
                 $auth->deleteHash($user_id);
@@ -77,12 +82,14 @@ if (!empty($_POST['email'] and $_POST['p'])) {
 
                 setcookie("user_hash", $hash, 0, '/', $domain, FALSE, TRUE);
                 setcookie("user_login", $user_id, 0, '/', $domain, FALSE, TRUE);
+                setcookie("user_name", $fullName, 0, '/', $domain, FALSE, TRUE);
                 // Set Auth Cookies if 'Husk meg' checked
                 if (! empty($_POST["remember"])) {
                     $cookie_expiration_time = $current_time + (30 * 24 * 60 * 60);  // for 1 month
                     $random_password = $util->getToken(16);
                     $random_selector = $util->getToken(32);
                     setcookie("user_login", $user_id, $cookie_expiration_time, '/', $domain, FALSE, TRUE);
+                    setcookie("user_name", $username, $cookie_expiration_time, '/',$domain,FALSE,TRUE);
 
 
                     setcookie("random_password", $random_password, $cookie_expiration_time, '/', $domain, FALSE, TRUE);

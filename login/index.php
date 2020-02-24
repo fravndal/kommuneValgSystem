@@ -96,19 +96,19 @@ if ($isLoggedIn) {
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="email" name="email" class="form-control input_user" value="" id="email" placeholder="epost" autofocus>
+                        <input type="email" name="email" class="form-control input_user" value="<?php if(isset($_COOKIE['set_email'])) {echo $_COOKIE['set_email'];} ?>" id="email" placeholder="epost" <?php if(!isset($_COOKIE['set_email'])) {echo 'autofocus';} ?>>
                     </div>
 
                     <div class="input-group mb-2" id="password-form">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="password" class="form-control input_pass" value="" id="password" placeholder="passord">
+                        <input type="password" name="password" class="form-control input_pass" value="" id="password" placeholder="passord" <?php if(isset($_COOKIE['set_email'])) {echo 'autofocus';} ?>>
                     </div>
                     <div class="form-group" id="remember-form">
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" name="remember" class="custom-control-input" id="customControlInline">
-                            <label class="custom-control-label" for="customControlInline">Husk meg</label>
+                            <label class="custom-control-label" for="customControlInline">Forbli innlogget</label>
                         </div>
                     </div>
                     <?php if($util->captchaCheck($pdo) == true) { ?>
@@ -144,30 +144,20 @@ if ($isLoggedIn) {
 </body>
 <script type="text/JavaScript" src="../js_login/sha512.js"></script>
 <script type="text/JavaScript" src="../js_login/forms.js"></script>
-<!--<script type="text/JavaScript">
-    function forgot_password() {
-        let message = document.getElementById('message');
+<script type="text/JavaScript">
+    var passwordInput = document.getElementById("password");
+    var rememberInput = document.getElementById("customControlInline");
 
-        if(message) {
-            message.style.display = "none";
+    passwordInput.addEventListener("keyup", function (event) {
+        if(event.keyCode === 13) {
+            document.getElementById("login-button").click();
         }
+    });
+    rememberInput.addEventListener("keyup", function (event) {
+        if(event.keyCode === 13) {
+            document.getElementById("login-button").click();
+        }
+    });
 
-        document.getElementById('header-forgot-password').style.display = "block";
-        document.getElementById('email-login').style.display = "none";
-        document.getElementById('email-forgot').style.display = "flex";
-        document.getElementById('password-form').style.display = "none";
-        document.getElementById('remember-form').style.display = "none";
-        document.getElementById('login-button-form').style.display = "none";
-        document.getElementById('application-form').style.display = "none";
-        document.getElementById('login-form').style.display = "block";
-        document.getElementById('email').value = "";
-        document.getElementById('login-button').value = 'Send passord reset';
-
-
-    }
-    function login() {
-        window.location = "http://localhost/";
-    }
-
-</script>-->
+</script>
 </html>

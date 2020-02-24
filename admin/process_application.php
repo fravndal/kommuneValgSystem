@@ -15,6 +15,8 @@ $email = $_POST['inp-7'];
 $car = $_POST['inp-8'];
 $norKnowledgde = $_POST['inp-9'];
 $dataKnowledge = $_POST['inp-10'];
+$kretsNr = $_POST['inp-11'];
+$role = $_POST['inp-12'];
 
 
 
@@ -23,12 +25,11 @@ if(!empty($_POST['approved'])) {
     $random_salt = hash('sha512', uniqid(openssl_random_pseudo_bytes(16), TRUE));
     $password = hash('sha512',$app->generatePassword());
     $password = hash('sha512', $password . $random_salt);
-    $role = 'Leder';
     $admin = 0;
     $active = 0;
     //insert user to user-table
 
-    $app->insertUserToUsersTable($email, $password, $random_salt, $role, $admin, $active);
+    $app->insertUserToUsersTable($email, $password, $random_salt, $admin, $active);
     $user = $app->getIDByEmail($email);
 
     if($user !=null) {
@@ -48,7 +49,7 @@ if(!empty($_POST['approved'])) {
         $app -> insertToken($user_id, $selector, $token);
 
         //insert user-account to database
-        $app->insertUserToUserInfo($user_id, $name, $socSec, $address, $city, $zipcode, $mobile, $car, $norKnowledgde, $dataKnowledge);
+        $app->insertUserToUserInfo($user_id, $name, $socSec, $address, $city, $zipcode, $mobile, $car, $norKnowledgde, $dataKnowledge, $email, $kretsNr, $role);
 
 
         //send activation mail to user

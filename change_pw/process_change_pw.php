@@ -50,7 +50,7 @@ if (isset($_POST['p'], $_POST['c'])) {
 
 
 
-            header('Location: ../dashboard/');
+            header('Location: ../dashboard/startpage.php');
 
 
         } else {
